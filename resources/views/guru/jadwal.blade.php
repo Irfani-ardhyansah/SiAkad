@@ -33,7 +33,7 @@
                             <td>{{ $kelas->kelas }}</td>
                             <td>
                                 <a href="{{ url('/guru/jadwal/'. $kelas->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                <a href="{{ url('/guru/jadwal/'. $kelas->id) }}" class="btn btn-success btn-sm"><i class="fa fa-file-o" aria-hidden="true"></i></a>
+                                <a href="{{ url('/guru/jadwal/'. $kelas->id . '/print') }}" class="btn btn-success btn-sm"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                             @endforeach

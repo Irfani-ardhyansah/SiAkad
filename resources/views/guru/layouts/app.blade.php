@@ -30,6 +30,9 @@
   <!-- fullCalendar -->
   <link rel="stylesheet" href="{{asset('adminlte/bower_components/fullcalendar/dist/fullcalendar.min.css')}}">
   <link rel="stylesheet" href="{{asset('adminlte/bower_components/fullcalendar/dist/fullcalendar.print.min.css')}}" media="print">
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+
+
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -96,8 +99,9 @@
 <!-- fullCalendar -->
 <script src="{{asset('adminlte/bower_components/moment/moment.js')}}"></script>
 <script src="{{asset('adminlte/bower_components/fullcalendar/dist/fullcalendar.min.js')}}"></script>
+<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 
-<script>
+<script type="text/javascript">
   $(function () {
 
     /* initialize the external events
@@ -259,6 +263,49 @@
   })
 </script>
 
+<script type="text/javascript">
+  $(function() {
+    var oTable = $('#tablesiswa').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: {
+        url: '{{ route('data.siswa') }}'
+      },
+      columns: [
+        {data: 'nisn', name: 'nisn'},
+        {data: 'nama', name: 'nama', orderable: false},
+        {data: 'alamat', name: 'alamat', orderable: false},
+        {data: 'kelas', name: 'kelas.kelas', orderable: false},
+        {data: 'action', name: 'action', orderable: false, searchable: false},
+      ],
+    });
+  });
+</script>
+
+<script type="text/javascript">
+  function bacaGambar(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+    
+        reader.onload = function (e) {
+            $('#foto_preview_guru').attr('src', e.target.result);
+            $('#foto_preview_siswa').attr('src', e.target.result);
+        }
+    
+        reader.readAsDataURL(input.files[0]);
+      }
+  }
+
+  $("#avatar_guru").change(function(){
+      bacaGambar(this);
+  });
+
+  $("#avatar").change(function(){
+      bacaGambar(this);
+  });
+
+</script>
+  
  @section('js')
  
   @show

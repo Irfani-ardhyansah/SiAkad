@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Kelas;
 use App\Data_siswa;
 use App\Nilai;
+use Yajra\Datatables\Datatables;
 
 class SiswaController_Guru extends Controller
 {
@@ -14,6 +15,17 @@ class SiswaController_Guru extends Controller
         $kelass = Kelas::orderBy('kelas', 'ASC')->get();
         $siswa = Data_siswa::orderBy('nisn', 'ASC')->get();
         return view('guru.siswa', compact('siswa', 'kelass'));
+    }
+
+    public function dataSiswa()
+    {
+        $siswa = Data_siswa::orderBy('nisn', 'ASC')->with('kelas')->get();
+        return datatables($siswa)->addColumn('action', function ($siswa) {
+            return '<a href="/guru/siswa/' .$siswa -> id.'" class="btn btn-warning btn-sm"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
+                    <a href="/guru/siswa/'. $siswa -> id.'" onclick="javascript:return confirm(\'Anda Yakin Ingin Menghapus?\');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>';
+        })->addColumn('kelas', function (Data_siswa $siswa) {
+            return $siswa->kelas->kelas;
+        })->addIndexColumn()->toJson();
     }
 
     public function info($id)

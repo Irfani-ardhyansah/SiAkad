@@ -63,12 +63,6 @@
                     </span> --}}
                 </a>
             </li>
-            <li>
-                <a href="/guru/laporan">
-                    <i class="fa fa-file-o"></i>
-                    <span>Laporan</span>
-                </a>
-            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

@@ -14,6 +14,23 @@ class SiswaController_Admin extends Controller
         return view('admin.siswa', compact('siswa'));
     }
 
+    public function dataSiswa()
+    {
+        $siswa = Data_siswa::orderBy('nisn', 'ASC')->with('kelas')->get();
+        return datatables($siswa)->addColumn('action', function ($siswa) {
+            return '<a href="/admin/siswa/' .$siswa -> id.'/edit" class="btn btn-warning btn-sm"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
+                    <a href="/admin/siswa/'. $siswa -> id.'" onclick="javascript:return confirm(\'Anda Yakin Ingin Menghapus?\');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>';
+        })->addColumn('kelas', function (Data_siswa $siswa) {
+            return $siswa->kelas->kelas;
+        })->addColumn('status', function (Data_siswa $siswa) {
+            if (empty($siswa->user)) {
+                return '<button class="btn  btn-xs btn-rounded btn-danger disabled">Tidak Aktif</button>';
+            } else {
+                return '<a href ="" class="btn  btn-xs btn-rounded btn-info disabled">Aktif</a>';
+            }
+        })->addIndexColumn()->rawColumns(['status','action', 'confirmed'])->toJson();
+    }
+
     public function save(Request $request) 
     {
         $this->validate($request, [
@@ -54,8 +71,10 @@ class SiswaController_Admin extends Controller
                 $siswa->save();
             }
 
+            alert()->success('Berhasil','Data Berhasil Ditambah!');
             return redirect()->route('admin.siswa');
         } catch(\Exception $e) {
+            alert()->error('Gagal','Data Gagal Ditambah!');
             return redirect()->route('admin.siswa')->with(['error' => $e->getMessage()]);
         }
     }
@@ -103,8 +122,10 @@ class SiswaController_Admin extends Controller
                 $siswa->save();
             }
 
+            alert()->success('Berhasil','Data Berhasil Diubah!');
             return redirect()->route('admin.siswa');
         } catch(\Exception $e) {
+            alert()->error('Gagal','Data Gagal Diubah!');
             return redirect()->route('admin.siswa')->with(['error' => $e->getMessage()]);
         }
     }
@@ -113,6 +134,7 @@ class SiswaController_Admin extends Controller
     {
         $siswa = Data_siswa::find($id);
         $siswa->delete();
+        alert()->success('Berhasil','Data Berhasil Dihapus!');
         return redirect()->route('admin.siswa');
     }
 }

@@ -39,12 +39,17 @@
                             <td>{{ @$data -> siswa -> kelas -> kelas }}</td>
                             <td>{{$data->password}}</td>
                             <td>
-                                <a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <form action="{{ url('/admin/akun_siswa/' . $data -> id) }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="_method" value="DELETE" class="form-control">
+                                    <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus ?')"> <i class="fa fa-trash-o" aria-hidden="true"></i> </button>
+                                </form>
                             </td>
                         </tr>
                         </tbody>
                         @endforeach
                         </table>
+                        {{$users->links()}}
                     </div>
                 <!-- /.box-body -->
                 </div>

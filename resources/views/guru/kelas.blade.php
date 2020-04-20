@@ -26,7 +26,6 @@
                     <tr>
                         <th>Kelas</th>
                         <th>Wali Kelas</th>
-                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -50,9 +49,6 @@
                                 <button class="btn btn-warning btn-sm" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Wali Kelas?')"> <i class="fa fa-trash-o" aria-hidden="true"></i> </button>
                             </form>
                         </td> --}}
-                        <td>
-                            <a href="" class="btn btn-success btn-sm"><i class="fa fa-file-o" aria-hidden="true"></i></a>
-                        </td>
                     </tr>
                     @endforeach
                     </tbody>

@@ -22,7 +22,7 @@ class AdminController extends Controller
 
     public function akun_siswa()
     {
-        $users = User::where('job', 'siswa')->get();
+        $users = User::where('job', 'siswa')->orderBy('nisn', 'ASC')->paginate(10);
         return view('admin.user_siswa', compact('users'));
     }
 
@@ -30,12 +30,13 @@ class AdminController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        return redirect('admin.user_siswa');
+        alert()->success('Berhasil','Data Berhasil Dihapus!');
+        return redirect()->route('akun_siswa');
     }
 
     public function akun_guru()
     {
-        $users = User::where('job', 'guru')->get();
+        $users = User::where('job', 'guru')->orderBy('nisn', 'ASC')->paginate(10);
         return view('admin.user_guru', compact('users'));
     }
 
@@ -43,6 +44,7 @@ class AdminController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        return redirect('admin.user_guru');
+        alert()->success('Berhasil','Data Berhasil Dihapus!');
+        return redirect()->route('akun_guru');
     }
 }

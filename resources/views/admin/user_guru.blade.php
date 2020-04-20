@@ -51,6 +51,7 @@
                         </tbody>
                         @endforeach
                         </table>
+                        {{$users->links()}}
                     </div>
                 <!-- /.box-body -->
                 </div>

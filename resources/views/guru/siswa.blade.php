@@ -24,7 +24,7 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <table id="example2" class="table table-bordered table-hover">
+                        <table id="tablesiswa" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>Nomor Induk</th>
@@ -34,7 +34,7 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            {{-- <tbody>
                                 @foreach($siswa as $data)
                                 <tr>
                                     <td>{{$data -> nisn}}</td>
@@ -51,7 +51,7 @@
                                     </td>
                                 </tr>
                                 @endforeach
-                            </tbody>
+                            </tbody> --}}
                         </table>
                     </div>
                     <!-- /.box-body -->
@@ -124,8 +124,9 @@
                         </div> 
 
                         <div class="form-group col-xs-6">
+                            <img id="foto_preview_siswa" class="profile-user-img img-responsive" style="height: 150px; width: 150px; display: block;">
                             <label for="avatar">Picture</label>
-                            <input type="file" name="avatar" class="form-control">
+                            <input type="file" name="avatar" id="avatar" class="form-control">
                         </div>
 
                         {{-- Data Ortu Wali --}}

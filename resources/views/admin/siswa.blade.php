@@ -24,7 +24,7 @@
               </div>
               <!-- /.box-header -->
               <div class="box-body">
-                <table id="example2" class="table table-bordered table-hover">
+                <table id="tablesiswa" class="table table-bordered table-hover">
                   <thead>
                   <tr>
                     <th>Nomor Induk</th>
@@ -36,7 +36,7 @@
                     <th>Action</th>
                   </tr>
                   </thead>
-                  <tbody>
+                  {{-- <tbody>
                     @foreach($siswa as $data)
                   <tr>
                     <td>{{$data -> nisn}}</td>
@@ -61,9 +61,8 @@
                     </td>
                   </tr>
                     @endforeach
-                  </tbody>
+                  </tbody> --}}
                 </table>
-                {{ $siswa->render() }}
               </div>
               <!-- /.box-body -->
             </div>

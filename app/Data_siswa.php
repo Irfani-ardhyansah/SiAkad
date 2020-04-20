@@ -8,6 +8,8 @@ class Data_siswa extends Model
 {
     protected $guarded = [];
 
+    protected $with = ['kelas', 'user'];
+
     public function getAvatar()
     {
         if(!$this->avatar){

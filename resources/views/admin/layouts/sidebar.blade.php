@@ -29,7 +29,7 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/admin/profile"><i class="fa fa-caret-right"></i> Profile Saya</a></li>
+                        {{-- <li><a href="/admin/profile"><i class="fa fa-caret-right"></i> Profile Saya</a></li> --}}
                         <li><a href="/admin/akun"><i class="fa fa-caret-right"></i> Data Akun</a></li>
                     </ul>
                 </li>

@@ -18,10 +18,11 @@ Route::group(['prefix' => 'admin'], function() {
 
     Route::group(['prefix' => 'siswa'], function() {
         Route::get('/', 'SiswaController_Admin@index')->middleware('can:isAdmin')->name('admin.siswa');
+        Route::get('/data-siswa', 'SiswaController_Admin@dataSiswa')->middleware('can:isAdmin')->name('data.siswa.admin');
         Route::post('/', 'SiswaController_Admin@save')->middleware('can:isAdmin');
-        Route::get('/{id}', 'SiswaController_Admin@edit')->middleware('can:isAdmin');
+        Route::get('/{id}/edit', 'SiswaController_Admin@edit')->middleware('can:isAdmin');
         Route::put('/{id}', 'SiswaController_Admin@update')->middleware('can:isAdmin');
-        Route::delete('/{id}', 'SiswaController_Admin@destroy')->middleware('can:isAdmin');
+        Route::get('/{id}', 'SiswaController_Admin@destroy')->middleware('can:isAdmin');
     });
     
     Route::group(['prefix' => 'kelas'], function() {
@@ -43,9 +44,10 @@ Route::group(['prefix' => 'admin'], function() {
     });
 
     Route::get('/akun', 'AdminController@akun')->middleware('can:isAdmin');
-    Route::get('/akun_guru', 'AdminController@akun_guru')->middleware('can:isAdmin');
+    Route::get('/akun_guru', 'AdminController@akun_guru')->middleware('can:isAdmin')->name('akun_guru');
     Route::delete('/akun_guru/{id}', 'AdminController@delete_guru')->middleware('can:isAdmin');
-    Route::get('/akun_siswa', 'AdminController@akun_siswa')->middleware('can:isAdmin');
+    Route::get('/akun_siswa', 'AdminController@akun_siswa')->middleware('can:isAdmin')->name('akun_siswa');
+    Route::delete('/akun_siswa/{id}', 'AdminController@delete_siswa')->middleware('can:isAdmin');
     Route::get('/profile', 'AdminController@profile')->middleware('can:isAdmin');
 });
 
@@ -62,10 +64,11 @@ Route::group(['prefix' => 'guru'], function() {
 
     Route::group(['prefix' => 'siswa'], function() {
         Route::get('/', 'SiswaController_Guru@index')->middleware('can:isGuru')->name('guru.siswa');
+        Route::get('/data-siswa', 'SiswaController_Guru@dataSiswa')->middleware('can:isGuru')->name('data.siswa');
         Route::post('/', 'SiswaController_Guru@save')->middleware('can:isGuru');
         Route::get('/{id}/edit', 'SiswaController_Guru@edit')->middleware('can:isGuru');
         Route::put('/{id}', 'SiswaController_Guru@update')->middleware('can:isGuru');
-        Route::delete('/{id}', 'SiswaController_Guru@destroy')->middleware('can:isGuru');
+        Route::get('/{id}', 'SiswaController_Guru@destroy')->middleware('can:isGuru');
         Route::get('/{id}/profile', 'SiswaController_Guru@info')->middleware('can:isGuru');
     });
 
@@ -86,7 +89,7 @@ Route::group(['prefix' => 'guru'], function() {
     Route::group(['prefix' => 'jadwal'], function() {
         Route::get('/', 'JadwalController_Guru@index')->middleware('can:isGuru')->name('guru.jadwal');
         Route::get('/{kelas_id}', 'JadwalController_Guru@kelas')->middleware('can:isGuru');
-        Route::get('/{kelas_id}', 'JadwalController_Guru@cetak_pdf')->middleware('can:isGuru');
+        Route::get('/{kelas_id}/print', 'JadwalController_Guru@cetak_pdf')->middleware('can:isGuru');
         Route::post('/{kelas_id}', 'JadwalController_Guru@save_jadwal')->middleware('can:isGuru');
         Route::get('/{kelas_id}/edit/{id}', 'JadwalController_Guru@edit')->middleware('can:isGuru');
         Route::put('/{kelas_id}/edit/{id}', 'JadwalController_Guru@update')->middleware('can:isGuru');

@@ -30,6 +30,7 @@
   <!-- fullCalendar -->
   <link rel="stylesheet" href="{{url('adminlte/bower_components/fullcalendar/dist/fullcalendar.min.css')}}">
   <link rel="stylesheet" href="{{url('adminlte/bower_components/fullcalendar/dist/fullcalendar.print.min.css')}}" media="print">
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -96,6 +97,7 @@
 <!-- fullCalendar -->
 <script src="{{url('adminlte/bower_components/moment/moment.js')}}"></script>
 <script src="{{url('adminlte/bower_components/fullcalendar/dist/fullcalendar.min.js')}}"></script>
+<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 
 <script>
   $(function () {
@@ -267,6 +269,27 @@ $('#ModalEdit').on('show.bs.modal', function (event) {
   
   modal.find('.modal-body input').val(kelas)
 })
+</script>
+
+<script type="text/javascript">
+  $(function() {
+    var oTable = $('#tablesiswa').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: {
+        url: '{{ route('data.siswa.admin') }}'
+      },
+      columns: [
+        {data: 'nisn', name: 'nisn'},
+        {data: 'nama', name: 'nama', orderable: false},
+        {data: 'gender', name: 'gender', orderable: false},
+        {data: 'alamat', name: 'alamat', orderable: false},
+        {data: 'kelas', name: 'kelas.kelas', orderable: false},
+        {data: 'status', name:'status', orderable:false},
+        {data: 'action', name: 'action', orderable: false, searchable: false},
+      ],
+    });
+  });
 </script>
 
  @section('js')
