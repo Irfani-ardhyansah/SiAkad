@@ -75,8 +75,11 @@
                             </div> 
     
                             <div class="form-group col-xs-6">
-                                <label for="avatar">Picture</label>
-                                <input type="file" name="avatar" class="form-control">
+                                <label for="avatar" class="pull-left">Picture</label>
+                                <div class="form-group col-xs-6">
+                                    <img src="{{ asset('images/' . $siswa->avatar) }}" id="foto_preview_siswa" class="profile-user-img img-responsive pull-left" style="height: 150px; width: 150px; display: block;">
+                                </div>
+                                <input type="file" name="avatar" id="avatar"  class="form-control">
                             </div>
 
                             {{-- Data Ortu Wali --}}

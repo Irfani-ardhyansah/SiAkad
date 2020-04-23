@@ -12,15 +12,14 @@
 */
 
 Route::group(['prefix' => 'admin'], function() {
-    Route::get('/', function() {
-        return view('admin.index');
-    })->middleware('can:isAdmin')->name('admin.index');
+    Route::get('/', 'AdminController@index')->middleware('can:isAdmin')->name('admin.index');
 
     Route::group(['prefix' => 'siswa'], function() {
         Route::get('/', 'SiswaController_Admin@index')->middleware('can:isAdmin')->name('admin.siswa');
         Route::get('/data-siswa', 'SiswaController_Admin@dataSiswa')->middleware('can:isAdmin')->name('data.siswa.admin');
         Route::post('/', 'SiswaController_Admin@save')->middleware('can:isAdmin');
         Route::get('/{id}/edit', 'SiswaController_Admin@edit')->middleware('can:isAdmin');
+        Route::get('/{id}/profile', 'SiswaController_Admin@info')->middleware('can:isAdmin');
         Route::put('/{id}', 'SiswaController_Admin@update')->middleware('can:isAdmin');
         Route::get('/{id}', 'SiswaController_Admin@destroy')->middleware('can:isAdmin');
     });

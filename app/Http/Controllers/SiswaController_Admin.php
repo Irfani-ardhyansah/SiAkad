@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Data_siswa;
+use App\Nilai;
 use App\Kelas;
 
 class SiswaController_Admin extends Controller
@@ -19,6 +20,7 @@ class SiswaController_Admin extends Controller
         $siswa = Data_siswa::orderBy('nisn', 'ASC')->with('kelas')->get();
         return datatables($siswa)->addColumn('action', function ($siswa) {
             return '<a href="/admin/siswa/' .$siswa -> id.'/edit" class="btn btn-warning btn-sm"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
+                    <a href="/admin/siswa/' .$siswa->id. '/profile" class="btn btn-primary btn-sm"> <i class="fa fa-info" aria-hidden="true"></i> </a>        
                     <a href="/admin/siswa/'. $siswa -> id.'" onclick="javascript:return confirm(\'Anda Yakin Ingin Menghapus?\');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>';
         })->addColumn('kelas', function (Data_siswa $siswa) {
             return $siswa->kelas->kelas;
@@ -30,6 +32,14 @@ class SiswaController_Admin extends Controller
             }
         })->addIndexColumn()->rawColumns(['status','action', 'confirmed'])->toJson();
     }
+
+    public function info($id)
+    {   
+        $siswa = Data_siswa::find($id);
+        $nilai = Nilai::where('user_id', $id)->get();
+        return view('admin.siswa_info', compact('siswa' ,'nilai'));
+    }
+
 
     public function save(Request $request) 
     {

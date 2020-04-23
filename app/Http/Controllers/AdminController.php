@@ -4,10 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Data_siswa;
+use App\Data_guru;
+use App\Mapel;
 use Validator;
 
 class AdminController extends Controller
 {
+    public function index()
+    {
+        $user = User::where('job', '!=', 'Admin')->count();
+        $siswa = Data_siswa::all()->count();
+        $guru = Data_guru::all()->count();
+        $mapel = Mapel::all()->count();
+        return view('admin.index', compact('mapel','guru', 'user', 'siswa'));
+    }
     public function profile() 
     {
         $users = User::first();

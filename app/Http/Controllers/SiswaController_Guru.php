@@ -21,7 +21,8 @@ class SiswaController_Guru extends Controller
     {
         $siswa = Data_siswa::orderBy('nisn', 'ASC')->with('kelas')->get();
         return datatables($siswa)->addColumn('action', function ($siswa) {
-            return '<a href="/guru/siswa/' .$siswa -> id.'" class="btn btn-warning btn-sm"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
+            return '<a href="/guru/siswa/' .$siswa -> id.'/edit" class="btn btn-warning btn-sm"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
+                    <a href="/guru/siswa/' .$siswa->id. '/profile" class="btn btn-primary btn-sm"> <i class="fa fa-info" aria-hidden="true"></i> </a>
                     <a href="/guru/siswa/'. $siswa -> id.'" onclick="javascript:return confirm(\'Anda Yakin Ingin Menghapus?\');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>';
         })->addColumn('kelas', function (Data_siswa $siswa) {
             return $siswa->kelas->kelas;
