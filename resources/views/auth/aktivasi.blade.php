@@ -30,7 +30,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href=""><b>Admin</b>LTE</a>
+    <a href=""><b>Si</b>AKAD</a>
   </div>
 
   <div class="register-box-body">

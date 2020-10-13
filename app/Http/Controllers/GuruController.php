@@ -73,7 +73,7 @@ class GuruController extends Controller
 
     public function edit_pass($id)
     {
-        $guru = Data_guru::find($id);
+        $guru = User::find($id);
         $kelass = Kelas::all();
 
         // Untuk Mengecek Password

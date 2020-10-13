@@ -259,6 +259,30 @@
   })
 </script>
 
+<script type="text/javascript">
+  function bacaGambar(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+    
+        reader.onload = function (e) {
+            $('#foto_preview_guru').attr('src', e.target.result);
+            $('#foto_preview_siswa').attr('src', e.target.result);
+        }
+    
+        reader.readAsDataURL(input.files[0]);
+      }
+  }
+
+  $("#avatar_guru").change(function(){
+      bacaGambar(this);
+  });
+
+  $("#avatar").change(function(){
+      bacaGambar(this);
+  });
+
+</script>
+
  @section('js')
  
   @show

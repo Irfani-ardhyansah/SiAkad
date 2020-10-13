@@ -40,7 +40,7 @@
                                     <td>{{$data-> mapel -> nama_mapel}}</td>
                                     <td>{{$data -> uts}}</td>
                                     <td>{{$data -> uas}}</td>
-                                    @if($data -> uts + $data -> uas / 2 >= 77)
+                                    @if( ($data -> uts + $data -> uas) / 2 >= 77)
                                     <td>Nilai Memenuhi</td>
                                     @else
                                     <td>Nilai Tidak Memenuhi</td>
@@ -50,6 +50,7 @@
                                         <input type="hidden" name="_method" value="DELETE" class="form-control">
                                             <a href="{{ url('/guru/nilai/' .$siswa -> id. '/edit/'. $data->id) }}" class="btn btn-warning btn-sm"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
                                         <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus ?')"> <i class="fa fa-trash-o" aria-hidden="true"></i> </button>
+                                        {{-- <a href="{{ url('/guru/nilai/'. $siswa->id.'/eksten/' . $data->mapel_id) }}" class="btn btn-success btn-xs"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a> --}}
                                     </form></th>
                                 </tr>
                                 @endforeach
@@ -87,12 +88,12 @@
                             
                             <div class="form-group col-xs-6">
                                 <label for="nama">Nilai UTS</label>
-                                <input name="uts" type="number" class="form-control" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')" value="{{ old('uts') }}" placeholder="Masukkan Nomor Induk Pegawai">
+                                <input name="uts" type="number" class="form-control" oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')" value="{{ old('uts') }}" placeholder="Masukkan Nomor Induk Pegawai">
                             </div>  
 
                             <div class="form-group col-xs-6">
                                 <label for="nama">Nilai UAS</label>
-                                <input name="uas" type="number" class="form-control" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')" value="{{ old('uas') }}" placeholder="Masukkan Nomor Induk Pegawai">
+                                <input name="uas" type="number" class="form-control" oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')" value="{{ old('uas') }}" placeholder="Masukkan Nomor Induk Pegawai">
                             </div>  
                         </div>
                         <div class="modal-footer">

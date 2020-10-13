@@ -13,7 +13,7 @@ class NilaiController_Guru extends Controller
 {
     public function index()
     {
-        $siswa = Data_siswa::orderBy('nisn', 'ASC')->get();
+        $siswa = Data_siswa::orderBy('nisn', 'ASC')->paginate(12);
         return view('guru.nilai', compact('siswa'));
     }
 
@@ -25,14 +25,19 @@ class NilaiController_Guru extends Controller
         return view('guru.nilai_info', compact('siswa', 'mapel', 'nilai'));
     }
 
+    public function eksten($user_id, $id)
+    {
+        $siswa = Data_siswa::find($user_id);
+        $mapel = Mapel::all();
+        $nilai = Nilai::where('mapel_id', $id)->get();
+        return view('guru.nilai_eksten', compact('siswa', 'mapel', 'nilai'));
+    }
+
     public function save_nilai(Request $request, $id) 
     {
         // $user = DB::table('nilais')->select('user_id')->where('id', $id)->first();
         $this->validate($request, [
             'mapel_id' => 'required',
-            'uts' => 'required',
-            'uas' => 'required',
-            'keterangan' => 'required'
         ]);
         
         try {
@@ -63,7 +68,6 @@ class NilaiController_Guru extends Controller
         $this->validate($request, [
             'uts' => 'required',
             'uas' => 'required',
-            'keterangan' => 'required'
         ]);
         
         try {
@@ -71,7 +75,6 @@ class NilaiController_Guru extends Controller
             $nilai->update([
                 'uts' => $request->uts,
                 'uas' => $request->uas,
-                'keterangan' => $request->keterangan
             ]);
             alert()->success('Berhasil','Data Berhasil DiUpdate!');
             return redirect('guru/nilai/'.$user_id);

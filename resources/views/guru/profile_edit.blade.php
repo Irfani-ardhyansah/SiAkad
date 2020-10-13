@@ -65,6 +65,7 @@
                             </div>  
 
                             <div class="form-group  col-xs-6">
+                                <img id="foto_preview_guru" class="profile-user-img img-responsive" style="height: 150px; width: 150px; display: block;">
                                 <label for="avatar">Picture</label>
                                 <input type="file" name="avatar" class="form-control">
                             </div>

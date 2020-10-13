@@ -29,9 +29,7 @@
                                     <div class="col-sm-4">
                                         <div class="fileinput fileinput-new" data-provides="fileinput">
                                             <div class="fileinput-new thumbnail" style="width: 200px; height: 200px;">
-                                                @foreach ($siswa as $data)
-                                                <img src="{{$data->siswa->getAvatar()}}" alt="profile pic">
-                                            @endforeach
+                                                <img src="{{auth()->user()->siswa->getAvatar()}}" alt="profile pic">
                                             </div>
                                         </div>
                                     </div>
@@ -41,32 +39,31 @@
                                             <div class="table-responsive">
                                                 <table class="table table-bordered table-striped" id="users">
 
-                                                @foreach($siswa as $data)
                                                     <tr>
                                                         <td>Nama</td>
                                                         <td>
-                                                            {{$data-> siswa-> nama}}
+                                                            {{auth()->user()->siswa->nama}}
                                                         </td>
                                                     </tr>
 
                                                     <tr>
                                                         <td>Tempat Lahir </td>
                                                         <td>
-                                                            {{$data-> siswa-> tempat_lahir}}
+                                                            {{auth()->user()->siswa->tempat_lahir}}
                                                         </td>
                                                     </tr>
 
                                                     <tr>
                                                         <td>Tanggal Lahir </td>
                                                         <td>
-                                                            {{$data-> siswa-> tanggal_lahir}}
+                                                            {{auth()->user()->siswa->tanggal_lahir}}
                                                         </td>
                                                     </tr>
 
                                                     <tr>
                                                         <td>Email</td>
                                                         <td>
-                                                            {{$data-> email}}
+                                                            {{auth()->user()->email}}
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -74,31 +71,32 @@
                                                             Jenis Kelamin
                                                         </td>
                                                         <td>
-                                                            {{$data-> siswa -> gender}}
+                                                            {{auth()->user()->siswa->gender}}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Alamat</td>
                                                         <td>
-                                                            {{$data-> siswa-> alamat}}
+                                                            {{auth()->user()->siswa->alamat}}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>No Hp </td>
                                                         <td>
-                                                            {{$data-> siswa-> no_hp}}
+                                                            {{auth()->user()->siswa->no_hp}}
                                                         </td>
                                                     </tr>
-                                                    @endforeach
                                                 </table>
                                             </div>
                                         </div>
+                                        @foreach($siswa as $data)
                                         <div class="pull-right">    
                                             <a href="{{ url('/siswa/profile/' .$data -> data_siswa_id. '/edit') }}" class="btn btn-primary"> Edit Profile </a>
                                         </div>
                                         <div class="pull-left"> 
                                         <a href="{{ url('/siswa/profile/' .$data -> id. '/edit_password') }}" class="btn btn-warning"> Ganti Password </a>
                                         </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

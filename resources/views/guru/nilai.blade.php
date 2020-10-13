@@ -35,7 +35,7 @@
                                 @foreach($siswa as $data)
                                 <tr>
                                     <td><a href="{{url('/guru/nilai/'. $data -> id)}}"><span class="btn  btn-xs btn-rounded btn-primary"><i class="fa fa-info" aria-hidden="true"></i></span></a>
-                                        <a href="{{ url('/guru/nilai/'. $data->id) }}" class="btn btn-success btn-xs"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+                                        <a href="{{ url('/guru/nilai/'. $data->id.'/cetak') }}" class="btn btn-success btn-xs"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
                                     </td>   
                                     <td>{{$data -> nisn}}</td>
                                     <td>{{$data -> nama}}</td>
@@ -45,6 +45,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {!! $siswa->links() !!}
                     </div>
                     <!-- /.box-body -->
                 </div>

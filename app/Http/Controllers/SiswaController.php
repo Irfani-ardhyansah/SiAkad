@@ -88,7 +88,6 @@ class SiswaController extends Controller
         // $pas = auth()->user()->password;
         // $decrypt = Hash::check('secret', $pas);
         // dd($decrypt);
-        
         return view('siswa.profile_edit_pass', compact('siswa', 'kelass'));
     }
 

@@ -98,9 +98,10 @@ Route::group(['prefix' => 'guru'], function() {
     Route::group(['prefix' => 'nilai'], function() {
         Route::get('/', 'NilaiController_Guru@index')->middleware('can:isGuru')->name('guru.nilai');
         Route::get('/{id}', 'NilaiController_Guru@info')->middleware('can:isGuru');
-        Route::get('/{id}', 'NilaiController_Guru@cetak_pdf')->middleware('can:isGuru');
+        Route::get('/{id}/cetak', 'NilaiController_Guru@cetak_pdf')->middleware('can:isGuru');
         Route::post('/{id}', 'NilaiController_Guru@save_nilai')->middleware('can:isGuru');
         Route::get('/{user_id}/edit/{id}', 'NilaiController_Guru@edit')->middleware('can:isGuru');
+        Route::get('/{user_id}/eksten/{id}', 'NilaiController_Guru@eksten')->middleware('can:isGuru');
         Route::put('/{user_id}/edit/{id}', 'NilaiController_Guru@update')->middleware('can:isGuru');
         Route::delete('/{user_id}/{id}', 'NilaiController_Guru@destroy')->middleware('can:isGuru');
     });
@@ -124,7 +125,7 @@ Route::group(['prefix' => 'siswa'], function() {
     Route::get('/nilal/cetak_pdf', 'NilaiController_siswa@cetak_pdf')->middleware('can:isSiswa');
 });
 
-Auth::routes(['reset' => false]);
+Auth::routes();
 
 Route::get('/aktivasi', 'AktivasiController@index')->name('aktivasi');
 Route::post('/aktivasi', 'AktivasiController@aktivasi');

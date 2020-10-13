@@ -41,7 +41,7 @@
                             <td>{{$data->mapel->nama_mapel}}</td>
                             <td>{{$data->uts}}</td>
                             <td>{{$data->uas}}</td>
-                            <td>{{$data->uts + $data->uas / 2}}</td>
+                            <td>{{($data->uts + $data->uas) / 2}}</td>
                         </tr>
                         @endforeach
                         </tbody>
